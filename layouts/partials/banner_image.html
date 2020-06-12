@@ -1,0 +1,7 @@
+{{ if .Params.banner }}
+    {{ $image := .Resources.GetMatch .Params.banner }}
+    {{ if $image }}
+        <img src="{{ $image.RelPermalink }}" class="article-banner">
+    {{ end }}
+{{ end }}
+   

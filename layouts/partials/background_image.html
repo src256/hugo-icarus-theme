@@ -1,0 +1,7 @@
+{{ if .Params.banner }}
+    {{ $image := .Resources.GetMatch .Params.banner }}
+    {{ if $image }}
+        <span style="background-image:url({{ $image.RelPermalink }})" alt="{{ .Title }}" class="thumbnail-image"></span>
+    {{ end }}
+{{ end }}
+   
