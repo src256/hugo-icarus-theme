@@ -1,22 +1,23 @@
+{{- define "hierarchy" }}
+  <ul>
+    {{- range .Pages }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{- if .IsSection }}{{ template "hierarchy" . }}{{ end }}
+    {{- end }}
+  </ul>
+{{- end }}
+
+
 {{ if .Site.Params.widgets.menu }}
+
 <div class="widget-wrap">
     <h3 class="widget-title">
         MENU
     </h3>
     <div class="widget">
-        <ul>
-        {{ range .Site.Sections }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a>      
-            <ul>
-            {{ $pages := .RegularPages }}
-            {{ range $pages }}
-                <li>&nbsp;&nbsp;<a href="{{ .Permalink }}">{{ .Title }}</a>
-            {{ end }}
-           </ul>
-        </li>
-        {{ end }}
-        </ul>
+      {{ template "hierarchy" .Site.Home }}
     </div>      
-</div>    
+</div>
+
 {{ end }}
 
